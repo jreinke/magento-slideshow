@@ -1,0 +1,109 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Slideshow
+ * @version     1.0.0
+ * @copyright   Copyright (c) 2013 BubbleCode (http://shop.bubblecode.net)
+ *
+ * @var $this Bubble_Slideshow_Block_Slideshow
+ */
+$_images = $this->getImages();
+$_id = $this->getSlideshowId();
+$_backId = 'bubble-slideshow-back-' . $_id;
+$_frontId = 'bubble-slideshow-front-' . $_id;
+?>
+<?php if ($_images->count()): ?>
+    <div class="widget">
+        <?php if ($this->getTitle()): ?>
+            <div class="widget-title">
+                <h2><?php echo $this->__($this->getTitle()); ?></h2>
+            </div>
+        <?php endif; ?>
+        <div class="widget-content">
+            <div class="bubble-slideshow" style="position: relative;height: <?php echo $this->getHeight(); ?>px;<?php echo $this->getHideOverflow() ? 'overflow: hidden;' : ''; ?>">
+                <?php if ($this->isBackEnabled() && $_images->count() > 1): ?>
+                    <div id="<?php echo $_backId; ?>" class="bubble-slideshow-back">
+                        <ul>
+                            <?php foreach ($_images as $_i => $_image): ?>
+                                <li>
+                                    <?php if ($_image->getLink()): ?>
+                                    <a href="<?php echo $this->getLinkUrl($_image->getLink()); ?>" <?php if ($_image->getNewWindow()): ?>target="_blank"<?php endif; ?>>
+                                        <?php endif; ?>
+
+                                        <img src="<?php echo $this->getImageUrl($_image->getImage()); ?>" width="<?php echo $this->getWidth(); ?>" height="<?php echo $this->getHeight(); ?>" />
+
+                                        <?php if ($_image->getLink()): ?>
+                                    </a>
+                                <?php endif; ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
+                <div id="<?php echo $_frontId; ?>" class="bubble-slideshow-front">
+                    <ul>
+                        <?php foreach ($_images as $_i => $_image): ?>
+                            <li>
+                                <?php if ($_image->getLink()): ?>
+                                <a href="<?php echo $this->getLinkUrl($_image->getLink()); ?>" <?php if ($_image->getNewWindow()): ?>target="_blank"<?php endif; ?>>
+                                    <?php endif; ?>
+
+                                    <img src="<?php echo $this->getImageUrl($_image->getImage()); ?>" width="<?php echo $this->getWidth(); ?>" height="<?php echo $this->getHeight(); ?>" />
+
+                                    <?php if ($_image->getLink()): ?>
+                                </a>
+                            <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if ($_images->count() > 1): ?>
+    <script type="text/javascript">
+        <?php if ($this->isBackEnabled()): ?>
+        var CarouselBack<?php echo $_id; ?> = new BubbleSlideshow($('<?php echo $_backId; ?>'), {
+            blackAndWhite: <?php echo $this->getBlackAndWhite() ? 'true' : 'false'; ?>,
+            imagePath: '<?php echo $this->getSkinUrl(); ?>',
+            padding: <?php echo $this->getPadding(); ?>,
+            position: '<?php echo $this->getPosition(); ?>',
+            margin: <?php echo $this->getMargin(); ?>,
+            width: <?php echo $this->getWidth(); ?>,
+            height: <?php echo $this->getHeight(); ?>,
+            opacity: <?php echo $this->getOpacity(); ?>,
+            showControls: false
+        });
+        <?php endif; ?>
+
+        var CarouselFront<?php echo $_id; ?> = new BubbleSlideshow($('<?php echo $_frontId; ?>'), {
+            auto: <?php echo $this->getAutoRotate() ? 'true' : 'false'; ?>,
+            visibleImages: <?php echo $this->getVisibleImages(); ?>,
+            <?php if ($this->getDisplayTime()): ?>
+            displayTime: <?php echo $this->getDisplayTime(); ?>,
+            <?php endif; ?>
+            <?php if ($this->getAnimationSpeed()): ?>
+            transitionSpeed: <?php echo $this->getAnimationSpeed(); ?>,
+            <?php endif; ?>
+            iconPrevious: '<?php echo $this->getSkinUrl('images/bubble/slideshow/icon-previous.png'); ?>',
+            iconNext: '<?php echo $this->getSkinUrl('images/bubble/slideshow/icon-next.png'); ?>',
+            <?php if ($this->isBackEnabled()): ?>
+            onMoveLeft: function() { CarouselBack<?php echo $_id; ?>.next() },
+            onMoveRight: function() { CarouselBack<?php echo $_id; ?>.prev() },
+            <?php endif; ?>
+            showControls: <?php echo $this->getShowControls() ? 'true' : 'false'; ?>,
+            <?php if ($this->getNavWidth()): ?>
+            navWidth: <?php echo $this->getNavWidth(); ?>,
+            <?php endif; ?>
+            <?php if ($this->getNavHeight()): ?>
+            navHeight: <?php echo $this->getNavHeight(); ?>,
+            <?php endif; ?>
+            position: '<?php echo $this->getPosition(); ?>',
+            margin: <?php echo $this->getMargin(); ?>,
+            width: <?php echo $this->getWidth(); ?>,
+            height: <?php echo $this->getHeight(); ?>
+        });
+    </script>
+<?php endif; ?>

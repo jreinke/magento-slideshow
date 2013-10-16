@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<widgets>
+    <bubble_slideshow type="bubble_slideshow/slideshow" translate="name description" module="bubble_slideshow">
+        <name>Bubble Slideshow</name>
+        <description>Configure a slideshow and display it easily</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <title translate="label description">
+                <visible>1</visible>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <width translate="label description">
+                <visible>1</visible>
+                <label>Width</label>
+                <type>text</type>
+                <required>1</required>
+                <description>Image width.</description>
+            </width>
+            <height translate="label description">
+                <visible>1</visible>
+                <label>Height</label>
+                <type>text</type>
+                <required>1</required>
+                <description>Image height.</description>
+            </height>
+            <visible_images translate="label description">
+                <visible>1</visible>
+                <label>Number of Visible Images</label>
+                <type>text</type>
+                <value>1</value>
+                <description>Number of visible images in the carousel (default is 1).</description>
+            </visible_images>
+            <position translate="label description">
+                <visible>1</visible>
+                <label>Position</label>
+                <type>select</type>
+                <value>left</value>
+                <values>
+                    <left translate="label">
+                        <value>left</value>
+                        <label>Left</label>
+                    </left>
+                    <center translate="label">
+                        <value>center</value>
+                        <label>Center</label>
+                    </center>
+                    <right translate="label">
+                        <value>right</value>
+                        <label>Right</label>
+                    </right>
+                </values>
+                <description>Position of the slideshow in the block (default is left).</description>
+            </position>
+            <margin translate="label description">
+                <visible>1</visible>
+                <label>Margin</label>
+                <type>text</type>
+                <description>Space between the images (in px, default is 0).</description>
+            </margin>
+            <auto_rotate translate="label description">
+                <visible>1</visible>
+                <label>Auto Rotate</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>If enabled, the carousel will automatically rotate (default is true).</description>
+            </auto_rotate>
+            <display_time translate="label description">
+                <visible>1</visible>
+                <label>Display Time</label>
+                <type>text</type>
+                <description>Image display time (in ms, default is 4000).</description>
+            </display_time>
+            <animation_speed translate="label description">
+                <visible>1</visible>
+                <label>Animation Speed</label>
+                <type>text</type>
+                <description>Speed of the animation (in ms, default is 700).</description>
+            </animation_speed>
+            <show_controls translate="label description">
+                <visible>1</visible>
+                <label>Show Controls</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>If enabled, the navigation buttons will be displayed (default is true).</description>
+            </show_controls>
+            <nav_width translate="label description">
+                <visible>1</visible>
+                <label>Navigation Button Width</label>
+                <type>text</type>
+                <description>Navigation icons width (in px, default is 100).</description>
+                <depends>
+                    <show_controls>1</show_controls>
+                </depends>
+            </nav_width>
+            <nav_height translate="label description">
+                <visible>1</visible>
+                <label>Navigation Button Height</label>
+                <type>text</type>
+                <description>Navigation icons height (in px, default is 100).</description>
+                <depends>
+                    <show_controls>1</show_controls>
+                </depends>
+            </nav_height>
+            <enable_back translate="label description">
+                <visible>1</visible>
+                <label>Enable Back Slideshow</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>Shows previous and next images behind the carousel.</description>
+            </enable_back>
+            <opacity translate="label description">
+                <visible>1</visible>
+                <label>Opacity</label>
+                <type>text</type>
+                <depends>
+                    <enable_back>1</enable_back>
+                </depends>
+                <value>1</value>
+                <description>Opacity of the back images (from 0.1 to 1, default is 1).</description>
+            </opacity>
+            <black_and_white translate="label description">
+                <visible>1</visible>
+                <label>Convert to Black and White</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <enable_back>1</enable_back>
+                </depends>
+                <value>0</value>
+                <description>Converts back images to black and white (default is No).</description>
+            </black_and_white>
+            <hide_overflow translate="label description">
+                <visible>1</visible>
+                <label>Hide Overflow</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <enable_back>1</enable_back>
+                </depends>
+                <value>0</value>
+                <description>Hide back images outside of the slideshow (default is false).</description>
+            </hide_overflow>
+            <image1 translate="label description">
+                <visible>1</visible>
+                <label>Image 1</label>
+                <type>text</type>
+                <description>Image URL (relative or absolute).</description>
+            </image1>
+            <link1 translate="label description">
+                <visible>1</visible>
+                <label>Link 1</label>
+                <type>text</type>
+                <description>Link URL (relative or absolute).</description>
+            </link1>
+            <new_window1 translate="label description">
+                <visible>1</visible>
+                <label>New Window 1</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>If enabled, will open the link in a new window (target="_blank", default is false).</description>
+            </new_window1>
+            <image2 translate="label description">
+                <visible>1</visible>
+                <label>Image 2</label>
+                <type>text</type>
+                <description>Image URL (relative or absolute).</description>
+            </image2>
+            <link2 translate="label description">
+                <visible>1</visible>
+                <label>Link 2</label>
+                <type>text</type>
+                <description>Link URL (relative or absolute).</description>
+            </link2>
+            <new_window2 translate="label description">
+                <visible>1</visible>
+                <label>New Window 2</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>If enabled, will open the link in a new window (target="_blank").</description>
+            </new_window2>
+            <image3 translate="label description">
+                <visible>1</visible>
+                <label>Image 3</label>
+                <type>text</type>
+                <description>Image URL (relative or absolute).</description>
+            </image3>
+            <link3 translate="label description">
+                <visible>1</visible>
+                <label>Link 3</label>
+                <type>text</type>
+                <description>Link URL (relative or absolute).</description>
+            </link3>
+            <new_window3 translate="label description">
+                <visible>1</visible>
+                <label>New Window 3</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>If enabled, will open the link in a new window (target="_blank").</description>
+            </new_window3>
+            <image4 translate="label description">
+                <visible>1</visible>
+                <label>Image 4</label>
+                <type>text</type>
+                <description>Image URL (relative or absolute).</description>
+            </image4>
+            <link4 translate="label description">
+                <visible>1</visible>
+                <label>Link 4</label>
+                <type>text</type>
+                <description>Link URL (relative or absolute).</description>
+            </link4>
+            <new_window4 translate="label description">
+                <visible>1</visible>
+                <label>New Window 4</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>If enabled, will open the link in a new window (target="_blank").</description>
+            </new_window4>
+            <image5 translate="label description">
+                <visible>1</visible>
+                <label>Image 5</label>
+                <type>text</type>
+                <description>Image URL (relative or absolute).</description>
+            </image5>
+            <link5 translate="label description">
+                <visible>1</visible>
+                <label>Link 5</label>
+                <type>text</type>
+                <description>Link URL (relative or absolute).</description>
+            </link5>
+            <new_window5 translate="label description">
+                <visible>1</visible>
+                <label>New Window 5</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>If enabled, will open the link in a new window (target="_blank").</description>
+            </new_window5>
+        </parameters>
+    </bubble_slideshow>
+</widgets>

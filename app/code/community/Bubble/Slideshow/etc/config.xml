@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bubble_Slideshow>
+            <version>1.0.0</version>
+        </Bubble_Slideshow>
+    </modules>
+    <global>
+        <helpers>
+            <bubble_slideshow>
+                <class>Bubble_Slideshow_Helper</class>
+            </bubble_slideshow>
+        </helpers>
+        <blocks>
+            <bubble_slideshow>
+                <class>Bubble_Slideshow_Block</class>
+            </bubble_slideshow>
+        </blocks>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <bubble_slideshow>
+                    <file>bubble/slideshow.xml</file>
+                </bubble_slideshow>
+            </updates>
+        </layout>
+    </frontend>
+</config>
