@@ -98,7 +98,7 @@ class Bubble_Slideshow_Block_Slideshow
 
     public function getShowControls()
     {
-        return (bool) $this->getData('show_controls');
+        return $this->hasData('show_controls') ? (bool) $this->getData('show_controls') : true;
     }
 
     public function getNavWidth()
@@ -119,5 +119,10 @@ class Bubble_Slideshow_Block_Slideshow
     public function getPadding()
     {
         return intval($this->getWidth() + $this->getMargin() * ($this->getImages()->count() - 1));
+    }
+
+    public function getPosition()
+    {
+        return $this->hasData('position') ? $this->getData('position') : 'left';
     }
 }
