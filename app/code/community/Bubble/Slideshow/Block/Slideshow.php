@@ -98,7 +98,7 @@ class Bubble_Slideshow_Block_Slideshow
 
     public function getShowControls()
     {
-        return $this->hasData('show_controls') ? (bool) $this->getData('show_controls') : true;
+        return (bool) $this->getData('show_controls');
     }
 
     public function getNavWidth()
