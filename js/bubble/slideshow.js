@@ -26,6 +26,7 @@ BubbleSlideshow = Class.create({
             iconNext: '',
             navWidth: 100,
             navHeight: 100,
+            navPosition: 'center',
             blackAndWhite: false,
             position: 'left',
             onMoveLeft: function() {},
@@ -133,8 +134,21 @@ BubbleSlideshow = Class.create({
 
         // Build left/right nav
         if (o.showControls) {
-            this.obj.insert('<div class="bs-left-nav" style="position:absolute;left:-' + (o.navWidth / 2) + 'px;top:' + (o.height / 2 - (o.navHeight / 2)) + 'px;">');
-            this.obj.insert('<div class="bs-right-nav" style="position:absolute;right:-' + (o.navWidth / 2) + 'px;top:' + (o.height / 2 - (o.navHeight / 2)) + 'px;">');
+            if (o.navPosition == 'inside') {
+                var navTop = (o.height / 2 - (o.navHeight / 2));
+                var navLeft = '0';
+                var navRight = '0';
+            } else if (o.navPosition == 'outside') {
+                var navTop = (o.height / 2 - (o.navHeight / 2));
+                var navLeft = '-' + o.navWidth;
+                var navRight = '-' + o.navWidth;
+            } else { // center
+                var navTop = (o.height / 2 - (o.navHeight / 2));
+                var navLeft = '-' + (o.navWidth / 2);
+                var navRight = '-' + (o.navWidth / 2);
+            }
+            this.obj.insert('<div class="bs-left-nav" style="position:absolute;left:' + navLeft + 'px;top:' + navTop + 'px;">');
+            this.obj.insert('<div class="bs-right-nav" style="position:absolute;right:' + navRight + 'px;top:' + navTop + 'px;">');
             this.obj.down('.bs-left-nav').insert('<img style="cursor:pointer;" src="' + o.iconPrevious + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
             this.obj.down('.bs-right-nav').insert('<img style="cursor:pointer;" src="' + o.iconNext + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
             // Add click events for the left/right nav

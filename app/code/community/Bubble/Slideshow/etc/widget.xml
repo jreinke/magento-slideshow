@@ -104,6 +104,30 @@
                     <show_controls>1</show_controls>
                 </depends>
             </nav_height>
+            <nav_position translate="label description">
+                <visible>1</visible>
+                <label>Navigation Buttons Position</label>
+                <type>select</type>
+                <value>center</value>
+                <values>
+                    <center translate="label">
+                        <value>center</value>
+                        <label>Center</label>
+                    </center>
+                    <inside translate="label">
+                        <value>inside</value>
+                        <label>Inside</label>
+                    </inside>
+                    <outside translate="label">
+                        <value>outside</value>
+                        <label>Outside</label>
+                    </outside>
+                </values>
+                <description>Position of the navigation buttons (default is center).</description>
+                <depends>
+                    <show_controls>1</show_controls>
+                </depends>
+            </nav_position>
             <enable_back translate="label description">
                 <visible>1</visible>
                 <label>Enable Back Slideshow</label>
