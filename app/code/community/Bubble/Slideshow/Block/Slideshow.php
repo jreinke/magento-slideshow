@@ -4,7 +4,7 @@
  *
  * @category    Bubble
  * @package     Bubble_Slideshow
- * @version     1.0.2
+ * @version     1.0.3
  * @copyright   Copyright (c) 2013 BubbleCode (http://shop.bubblecode.net)
  */
 class Bubble_Slideshow_Block_Slideshow
