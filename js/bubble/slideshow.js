@@ -152,8 +152,8 @@ BubbleSlideshow = Class.create({
                 var navLeft = '-' + (o.navWidth / 2);
                 var navRight = '-' + (o.navWidth / 2);
             }
-            this.obj.insert('<div class="bs-left-nav" style="position:absolute;left:' + navLeft + 'px;top:' + navTop + 'px;">');
-            this.obj.insert('<div class="bs-right-nav" style="position:absolute;right:' + navRight + 'px;top:' + navTop + 'px;">');
+            this.container.insert('<div class="bs-left-nav" style="position:absolute;left:' + navLeft + 'px;top:' + navTop + 'px;">');
+            this.container.insert('<div class="bs-right-nav" style="position:absolute;right:' + navRight + 'px;top:' + navTop + 'px;">');
             this.container.down('.bs-left-nav').insert('<img style="cursor:pointer;" src="' + o.iconPrevious + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
             this.container.down('.bs-right-nav').insert('<img style="cursor:pointer;" src="' + o.iconNext + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
             // Add click events for the left/right nav
