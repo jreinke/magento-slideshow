@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Bubble_Slideshow>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
         </Bubble_Slideshow>
     </modules>
     <global>
