@@ -111,6 +111,11 @@ class Bubble_Slideshow_Block_Slideshow
         return intval($this->getData('nav_height'));
     }
 
+    public function getNavPosition()
+    {
+        return $this->hasData('nav_position') ? $this->getData('nav_position') : 'center';
+    }
+
     public function getVisibleImages()
     {
         return intval(max(min($this->getData('visible_images'), $this->getImages()->count()), 1));

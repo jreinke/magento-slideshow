@@ -94,7 +94,9 @@
                 <type>text</type>
                 <description>Navigation icons width (in px, default is 100).</description>
                 <depends>
-                    <show_arrows>1</show_arrows>
+                    <show_controls>
+                        <value>1</value>
+                    </show_controls>
                 </depends>
             </nav_width>
             <nav_height translate="label description">
@@ -103,9 +105,37 @@
                 <type>text</type>
                 <description>Navigation icons height (in px, default is 100).</description>
                 <depends>
-                    <show_arrows>1</show_arrows>
+                    <show_controls>
+                        <value>1</value>
+                    </show_controls>
                 </depends>
             </nav_height>
+            <nav_position translate="label description">
+                <visible>1</visible>
+                <label>Navigation Buttons Position</label>
+                <type>select</type>
+                <value>center</value>
+                <values>
+                    <center translate="label">
+                        <value>center</value>
+                        <label>Center</label>
+                    </center>
+                    <inside translate="label">
+                        <value>inside</value>
+                        <label>Inside</label>
+                    </inside>
+                    <outside translate="label">
+                        <value>outside</value>
+                        <label>Outside</label>
+                    </outside>
+                </values>
+                <description>Position of the navigation buttons (default is center).</description>
+                <depends>
+                    <show_controls>
+                        <value>1</value>
+                    </show_controls>
+                </depends>
+            </nav_position>
             <show_bullets translate="label description fieldset">
                 <fieldset>Bullets</fieldset>
                 <visible>1</visible>
@@ -142,7 +172,9 @@
                 <type>text</type>
                 <description>Width in px, default is 12.</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
                 </depends>
             </bullets_width>
             <bullets_height translate="label description">
@@ -151,7 +183,9 @@
                 <type>text</type>
                 <description>Height in px, default is 12.</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
                 </depends>
             </bullets_height>
             <bullets_margin translate="label description">
@@ -160,7 +194,9 @@
                 <type>text</type>
                 <description>Space between the bullets (in px, default is 10).</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
                 </depends>
             </bullets_margin>
             <bullets_active_color translate="label description">
@@ -169,7 +205,9 @@
                 <type>text</type>
                 <description>Specify it as HTML named color or hexadecimal. Default is white.</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
                 </depends>
             </bullets_active_color>
             <bullets_inactive_color translate="label description">
@@ -178,7 +216,9 @@
                 <type>text</type>
                 <description>Specify it as HTML named color or hexadecimal. Default is silver.</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
                 </depends>
             </bullets_inactive_color>
             <bullets_rounded translate="label description">
@@ -189,7 +229,9 @@
                 <value>1</value>
                 <description>If disabled, squares will be displayed instead of bullets.</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
                 </depends>
             </bullets_rounded>
             <bullets_radius translate="label description">
@@ -198,8 +240,12 @@
                 <type>text</type>
                 <description>Radius in px, default is 8.</description>
                 <depends>
-                    <show_bullets>1</show_bullets>
-                    <bullets_rounded>1</bullets_rounded>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
+                    <bullets_rounded>
+                        <value>1</value>
+                    </bullets_rounded>
                 </depends>
             </bullets_radius>
             <enable_back translate="label description fieldset">
@@ -216,7 +262,9 @@
                 <label>Opacity</label>
                 <type>text</type>
                 <depends>
-                    <enable_back>1</enable_back>
+                    <enable_back>
+                        <value>1</value>
+                    </enable_back>
                 </depends>
                 <value>1</value>
                 <description>Opacity of the back images (from 0.1 to 1, default is 1).</description>
@@ -227,7 +275,9 @@
                 <type>select</type>
                 <source_model>adminhtml/system_config_source_yesno</source_model>
                 <depends>
-                    <enable_back>1</enable_back>
+                    <enable_back>
+                        <value>1</value>
+                    </enable_back>
                 </depends>
                 <value>0</value>
                 <description>Converts back images to black and white (default is No).</description>
@@ -238,7 +288,9 @@
                 <type>select</type>
                 <source_model>adminhtml/system_config_source_yesno</source_model>
                 <depends>
-                    <enable_back>1</enable_back>
+                    <enable_back>
+                        <value>1</value>
+                    </enable_back>
                 </depends>
                 <value>0</value>
                 <description>Hide back images outside of the slideshow (default is No).</description>
