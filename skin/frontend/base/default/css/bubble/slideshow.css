@@ -1,0 +1,18 @@
+.bubble-slideshow {
+    position: relative;
+}
+
+.bs-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.bs-nav a {
+    display: block;
+    clear: none;
+    float: left;
+    text-decoration: none;
+}

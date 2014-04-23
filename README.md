@@ -16,4 +16,4 @@ or download package manually [here](https://github.com/jreinke/magento-slideshow
 
 Finally, clear cache.
 
-Live demo available here: [http://demo.bubblecode.net/slideshow-demo/](http://demo.bubblecode.net/slideshow-demo/)
+Live demo available here: [http://demo.bubbleshop.net/slideshow-demo/](http://demo.bubbleshop.net/slideshow-demo/)

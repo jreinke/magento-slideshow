@@ -3,6 +3,7 @@
     <default>
         <reference name="head">
             <action method="addItem"><type>js</type><name>bubble/slideshow.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/bubble/slideshow.css</name></action>
         </reference>
     </default>
 </layout>

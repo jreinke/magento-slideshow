@@ -1,42 +1,49 @@
 BubbleSlideshow = Class.create({
     initialize: function(carousel, options) {
-        this.obj = carousel.down();
+        this.carousel = carousel;
+        this.container = carousel.down();
         this.tray = null;
         this.effect = null;
         this.randId = Math.round(Math.random() * 100000000);
         this.clrTimerInterval = null;
-        this.numItems = 0;
         this.trayLeft = 0;
 
         this.options = Object.extend({
-            transitionSpeed: 700,
-            displayTime: 4000,
-            hideCenter: false,
-            advance: 1,
-            margin: 0,
-            customClass: null,
-            showControls: true,
-            auto: false,
-            width: 0,
-            height: 0,
-            visibleImages: 1,
-            padding: 0,
-            opacity: 1,
-            iconPrevious: '',
-            iconNext: '',
-            navWidth: 100,
-            navHeight: 100,
-            navPosition: 'center',
-            blackAndWhite: false,
-            position: 'left',
-            onMoveLeft: function() {},
-            onMoveRight: function() {},
-            onMoveEnd: function() {}
+            transitionSpeed:        700,
+            displayTime:            4000,
+            hideCenter:             false,
+            advance:                1,
+            margin:                 0,
+            showArrows:             true,
+            auto:                   false,
+            width:                  0,
+            height:                 0,
+            visibleImages:          1,
+            padding:                0,
+            opacity:                1,
+            iconPrevious:           '',
+            iconNext:               '',
+            navWidth:               100,
+            navHeight:              100,
+            blackAndWhite:          false,
+            position:               'left',
+            showBullets:            false,
+            bulletsWidth:           12,
+            bulletsHeight:          12,
+            bulletsMargin:          10,
+            bulletsPosition:        'left',
+            bulletsRounded:         true,
+            bulletsRadius:          8,
+            bulletsActiveColor:     'white',
+            bulletsInactiveColor:   'silver',
+            onMoveLeft:         function() {},
+            onMoveRight:        function() {},
+            onMoveEnd:          function() {}
         }, options || {});
 
         var o = this.options,
             randId = this.randId,
-            numItems = this.obj.childElements().length,
+            numItems = this.container.childElements().length,
             links = [],
             itemSources = [];
 
@@ -45,13 +52,11 @@ BubbleSlideshow = Class.create({
         }
 
         if (numItems <= o.visibleImages) {
-            o.showControls = false;
+            o.showArrows = false;
             o.visibleImages = numItems;
         }
 
-        this.numItems = numItems;
-
-        this.obj.childElements().each(function(item) {
+        this.container.childElements().each(function(item) {
             var a = item.down('a');
             links.push({
                 href: a ? a.href : undefined,
@@ -66,9 +71,9 @@ BubbleSlideshow = Class.create({
         });
 
         // Build carousel container
-        this.obj.replace('<div id="bs-' + randId + '"></div>'); // Kick the list and its content to the curb and replace with a div
-        this.obj = $('bs-' + randId); // Reassign the new div as our obj
-        this.obj.setStyle({
+        this.container.replace('<div id="bs-' + randId + '"></div>'); // Kick the list and its content to the curb and replace with a div
+        this.container = $('bs-' + randId); // Reassign the new div as our obj
+        this.container.setStyle({
             width: ((o.width * o.visibleImages) + (o.margin * (o.visibleImages - 1))) + 'px',
             height: o.height + 'px',
             overflow: 'hidden',
@@ -95,7 +100,7 @@ BubbleSlideshow = Class.create({
         this.trayLeft *= -1;
         var trayLeft = 'left:' + this.trayLeft + 'px;';
         var trayWidth = 3 * numItems * (o.width + o.margin);
-        this.obj.insert('<div id="bs-tray-' + randId + '" class="bs-tray" style="position:relative;width:' + trayWidth + 'px;' + trayLeft + '">');
+        this.container.insert('<div id="bs-tray-' + randId + '" class="bs-tray" style="position:relative;width:' + trayWidth + 'px;' + trayLeft + '">');
         this.tray = $('bs-tray-' + randId);
         for (i = 0; i < numItems; i++) {
             this.tray.insert('<div class="bs-item" style="overflow:hidden;float:left;position:relative; ' + itemMargin + '">');
@@ -125,51 +130,73 @@ BubbleSlideshow = Class.create({
         var items = $$('#bs-' + randId + ' .bs-item');
         for (var i = 1; i <= 2; i++) {
             items.each(function(el) {
-                var cloneItem = el.cloneNode(true);
-                this.tray.insert(cloneItem);
+                this.tray.insert(el.cloneNode(true));
             }, this);
         }
 
         $$('#bs-' + randId + ' .bs-item').invoke('removeAttribute', 'id');
 
         // Build left/right nav
-        if (o.showControls) {
-            if (o.navPosition == 'inside') {
-                var navTop = (o.height / 2 - (o.navHeight / 2));
-                var navLeft = '0';
-                var navRight = '0';
-            } else if (o.navPosition == 'outside') {
-                var navTop = (o.height / 2 - (o.navHeight / 2));
-                var navLeft = '-' + o.navWidth;
-                var navRight = '-' + o.navWidth;
-            } else { // center
-                var navTop = (o.height / 2 - (o.navHeight / 2));
-                var navLeft = '-' + (o.navWidth / 2);
-                var navRight = '-' + (o.navWidth / 2);
-            }
-            this.obj.insert('<div class="bs-left-nav" style="position:absolute;left:' + navLeft + 'px;top:' + navTop + 'px;">');
-            this.obj.insert('<div class="bs-right-nav" style="position:absolute;right:' + navRight + 'px;top:' + navTop + 'px;">');
-            this.obj.down('.bs-left-nav').insert('<img style="cursor:pointer;" src="' + o.iconPrevious + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
-            this.obj.down('.bs-right-nav').insert('<img style="cursor:pointer;" src="' + o.iconNext + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
+        if (o.showArrows) {
+            this.container.insert('<div class="bs-left-nav" style="position:absolute;left:-' + (o.navWidth / 2) + 'px;top:' + (o.height / 2 - (o.navHeight / 2)) + 'px;">');
+            this.container.insert('<div class="bs-right-nav" style="position:absolute;right:-' + (o.navWidth / 2) + 'px;top:' + (o.height / 2 - (o.navHeight / 2)) + 'px;">');
+            this.container.down('.bs-left-nav').insert('<img style="cursor:pointer;" src="' + o.iconPrevious + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
+            this.container.down('.bs-right-nav').insert('<img style="cursor:pointer;" src="' + o.iconNext + '" width="' + o.navWidth + '" height="' + o.navHeight + '" />');
             // Add click events for the left/right nav
-            this.obj.down('.bs-left-nav img').observe('click', this.prev.bindAsEventListener(this));
-            this.obj.down('.bs-right-nav img').observe('click', this.next.bindAsEventListener(this));
+            this.container.down('.bs-left-nav img').observe('click', this.prev.bindAsEventListener(this));
+            this.container.down('.bs-right-nav img').observe('click', this.next.bindAsEventListener(this));
+        }
+
+        // Build bullets navigation if enabled
+        if (o.showBullets) {
+            var bulletsHtml = '<div class="bs-nav">';
+            for (i = 0; i < numItems; i++) {
+                bulletsHtml += '<a href="#" style="width:' + o.bulletsWidth + 'px;height:' + o.bulletsHeight + 'px;margin-right:' + o.bulletsMargin + 'px;border-radius: ' + o.bulletsRadius + 'px;background: ' + (i === 0 ? o.bulletsActiveColor  : o.bulletsInactiveColor) + ';"' + (i === 0 ? 'class="on"' : '') + '></a>';
+            }
+            bulletsHtml += '</div>';
+            this.carousel.insert(bulletsHtml);
+
+            var self = this;
+            var bullets = carousel.select('.bs-nav a');
+            bullets.each(function(el) {
+                el.observe('click', function(e) {
+                    e.stop();
+                    var el = e.element();
+                    var j = 0;
+                    var k = 0;
+                    for (var i = 0; i < bullets.length; i++) {
+                        if (bullets[i].hasClassName('on')) {
+                            j = i;
+                        }
+                        if (bullets[i] == el) {
+                            k = i;
+                        }
+                    }
+                    if (j !== k) {
+                        if (j < k) {
+                            self.moveLeft(k - j);
+                        } else {
+                            self.moveRight(j - k);
+                        }
+                    }
+                });
+            });
         }
 
         // If nav outside carousel, wrap carousel in a div and set padding to compensate for nav. also dont animate nav if outside images
-        this.obj.wrap('div', {
+        this.container.wrap('div', {
             'id': 'bs-' + randId + '-wrapper',
             'class': 'bs-wrapper'
         });
-        $('bs-' + randId + '').setStyle({ width: this.obj.getWidth() });
-        if (o.showControls) {
-            $('bs-' + randId + '-wrapper').insert({ bottom: this.obj.down('.bs-left-nav').remove() });
-            $('bs-' + randId + '-wrapper').insert({ bottom: this.obj.down('.bs-right-nav').remove() });
+        $('bs-' + randId + '').setStyle({ width: this.container.getWidth() });
+        if (o.showArrows) {
+            $('bs-' + randId + '-wrapper').insert({ bottom: this.container.down('.bs-left-nav').remove() });
+            $('bs-' + randId + '-wrapper').insert({ bottom: this.container.down('.bs-right-nav').remove() });
         }
 
         // Adjust wrapped width when using peek padding
-        this.obj.addClassName('bs-peek-padding');
-        this.obj.setStyle({ padding: '0 ' + o.padding + 'px' });
+        this.container.addClassName('bs-peek-padding');
+        this.container.setStyle({ padding: '0 ' + o.padding + 'px' });
 
         if (o.auto && !this.isAnimated()) {
             this.play();
@@ -197,12 +224,12 @@ BubbleSlideshow = Class.create({
     },
 
     moveLeft: function(dist) {
-        this.options.onMoveLeft.call(this);
+        this.options.onMoveLeft.call(this, dist);
         this.move(dist, 'left');
     },
 
     moveRight: function(dist) {
-        this.options.onMoveRight.call(this);
+        this.options.onMoveRight.call(this, dist);
         this.move(dist, 'right');
     },
 
@@ -212,6 +239,7 @@ BubbleSlideshow = Class.create({
         if (dir == 'left') {
             x *= -1;
         }
+
         new Effect.Move(this.tray.id, {
             x: x,
             y: 0,
@@ -222,10 +250,45 @@ BubbleSlideshow = Class.create({
                 self.tray.addClassName('animated');
             },
             afterFinish: function() {
-                if (dir == 'left') {
-                    self.tray.insert({ bottom: self.obj.down('.bs-item:first').remove() });
-                } else {
-                    self.tray.insert({ top: self.obj.down('.bs-item:last').remove() });
+                for (var i = 1; i <= dist; i++) {
+                    var nav = null;
+                    if (dir == 'left') {
+                        self.tray.insert({ bottom: self.container.down('.bs-item:first').remove() });
+                        if (self.options.showBullets) {
+                            nav = self.carousel
+                                .down('.bs-nav a.on')
+                                .removeClassName('on')
+                                .setStyle({ background: self.options.bulletsInactiveColor });
+                            if (nav.next()) {
+                                nav.next()
+                                    .addClassName('on')
+                                    .setStyle({ background: self.options.bulletsActiveColor });
+                            } else {
+                                self.carousel
+                                    .down('.bs-nav a:first')
+                                    .addClassName('on')
+                                    .setStyle({ background: self.options.bulletsActiveColor });
+                            }
+                        }
+                    } else {
+                        self.tray.insert({ top: self.container.down('.bs-item:last').remove() });
+                        if (self.options.showBullets) {
+                            nav = self.carousel
+                                .down('.bs-nav a.on')
+                                .removeClassName('on')
+                                .setStyle({ background: self.options.bulletsInactiveColor });
+                            if (nav.previous()) {
+                                nav.previous()
+                                    .addClassName('on')
+                                    .setStyle({ background: self.options.bulletsActiveColor });
+                            } else {
+                                self.carousel
+                                    .down('.bs-nav a:last')
+                                    .addClassName('on')
+                                    .setStyle({ background: self.options.bulletsActiveColor });
+                            }
+                        }
+                    }
                 }
                 self.tray.setStyle({ left: self.trayLeft + 'px' });
                 self.tray.removeClassName('animated');

@@ -4,7 +4,7 @@
  *
  * @category    Bubble
  * @package     Bubble_Slideshow
- * @version     1.0.4
+ * @version     1.0.1
  * @copyright   Copyright (c) 2013 BubbleCode (http://shop.bubblecode.net)
  */
 class Bubble_Slideshow_Block_Slideshow
@@ -96,9 +96,9 @@ class Bubble_Slideshow_Block_Slideshow
         return (bool) $this->getData('enable_back') && $this->getImages()->count() >= 3;
     }
 
-    public function getShowControls()
+    public function getShowArrows()
     {
-        return (bool) $this->getData('show_controls');
+        return (bool) $this->getData('show_arrows');
     }
 
     public function getNavWidth()
@@ -109,11 +109,6 @@ class Bubble_Slideshow_Block_Slideshow
     public function getNavHeight()
     {
         return intval($this->getData('nav_height'));
-    }
-
-    public function getNavPosition()
-    {
-        return $this->hasData('nav_position') ? $this->getData('nav_position') : 'center';
     }
 
     public function getVisibleImages()
@@ -129,5 +124,50 @@ class Bubble_Slideshow_Block_Slideshow
     public function getPosition()
     {
         return $this->hasData('position') ? $this->getData('position') : 'left';
+    }
+
+    public function getShowBullets()
+    {
+        return (bool) $this->getData('show_bullets');
+    }
+
+    public function getBulletsWidth()
+    {
+        return intval(max($this->getData('bullets_width'), 0));
+    }
+
+    public function getBulletsHeight()
+    {
+        return intval(max($this->getData('bullets_height'), 0));
+    }
+
+    public function getBulletsMargin()
+    {
+        return intval(max($this->getData('bullets_margin'), 0));
+    }
+
+    public function getBulletsPosition()
+    {
+        return $this->hasData('bullets_position') ? $this->getData('bullets_position') : 'left';
+    }
+
+    public function getBulletsRounded()
+    {
+        return (bool) $this->getData('bullets_rounded');
+    }
+
+    public function getBulletsRadius()
+    {
+        return intval(max($this->getData('bullets_radius'), 0));
+    }
+
+    public function getBulletsActiveColor()
+    {
+        return $this->getData('bullets_active_color');
+    }
+
+    public function getBulletsInactiveColor()
+    {
+        return $this->getData('bullets_inactive_color');
     }
 }

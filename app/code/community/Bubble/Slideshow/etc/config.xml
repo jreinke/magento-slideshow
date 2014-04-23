@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Bubble_Slideshow>
-            <version>1.0.4</version>
+            <version>1.0.0</version>
         </Bubble_Slideshow>
     </modules>
     <global>
@@ -15,6 +15,11 @@
             <bubble_slideshow>
                 <class>Bubble_Slideshow_Block</class>
             </bubble_slideshow>
+            <widget>
+                <rewrite>
+                    <adminhtml_widget_options>Bubble_Slideshow_Block_Adminhtml_Widget_Options</adminhtml_widget_options>
+                </rewrite>
+            </widget>
         </blocks>
     </global>
     <frontend>
