@@ -2,8 +2,8 @@
 /**
  * @category    Bubble
  * @package     Bubble_Slideshow
- * @version     1.0.1
- * @copyright   Copyright (c) 2013 BubbleCode (http://shop.bubblecode.net)
+ * @version     1.1.0
+ * @copyright   Copyright (c) 2014 BubbleShop (http://www.bubbleshop.net)
  */
 class Bubble_Slideshow_Block_Adminhtml_Widget_Options extends Mage_Widget_Block_Adminhtml_Widget_Options
 {
