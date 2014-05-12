@@ -2,11 +2,14 @@
     position: relative;
 }
 
+.bs-nav-wrapper {
+    position: relative;
+    top: -30px;
+}
+
 .bs-nav {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    margin: 0;
+    position: relative;
+    margin: 0 auto;
     padding: 0;
 }
 
