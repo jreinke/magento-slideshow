@@ -78,7 +78,8 @@ BubbleSlideshow = Class.create({
             width: ((o.width * o.visibleImages) + (o.margin * (o.visibleImages - 1))) + 'px',
             height: o.height + 'px',
             overflow: 'hidden',
-            position: 'relative'
+            position: 'relative',
+            boxSizing: 'content-box'
         });
 
         // Build tray to hold items and populate with item container divs. Move tray one item width to the left.
