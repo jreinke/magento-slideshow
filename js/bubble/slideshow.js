@@ -164,11 +164,11 @@ BubbleSlideshow = Class.create({
 
         // Build bullets navigation if enabled
         if (o.showBullets) {
-            var bulletsHtml = '<div class="bs-nav">';
+            var bulletsHtml = '<div class="bs-nav-wrapper"><div class="bs-nav">';
             for (i = 0; i < numItems; i++) {
                 bulletsHtml += '<a href="#" style="width:' + o.bulletsWidth + 'px;height:' + o.bulletsHeight + 'px;margin-right:' + o.bulletsMargin + 'px;border-radius: ' + o.bulletsRadius + 'px;background: ' + (i === 0 ? o.bulletsActiveColor  : o.bulletsInactiveColor) + ';"' + (i === 0 ? 'class="on"' : '') + '></a>';
             }
-            bulletsHtml += '</div>';
+            bulletsHtml += '</div></div>';
             this.carousel.insert(bulletsHtml);
 
             var self = this;
