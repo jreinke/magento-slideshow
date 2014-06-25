@@ -165,6 +165,11 @@
                     </right>
                 </values>
                 <description>Position of the bullets (default is center).</description>
+                <depends>
+                    <show_bullets>
+                        <value>1</value>
+                    </show_bullets>
+                </depends>
             </bullets_position>
             <bullets_width translate="label description">
                 <visible>1</visible>
