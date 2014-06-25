@@ -4,7 +4,7 @@
  *
  * @category    Bubble
  * @package     Bubble_Slideshow
- * @version     1.1.6
+ * @version     1.1.7
  * @copyright   Copyright (c) 2014 BubbleShop (http://www.bubbleshop.net)
  */
 class Bubble_Slideshow_Block_Slideshow
